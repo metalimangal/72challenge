@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Asteroid
   - ProtonShot
+  - EnemyShot
+  - Enemy1
+  - Enemy2
+  - UFO
   layers:
   - Default
   - TransparentFX

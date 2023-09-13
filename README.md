@@ -13,3 +13,7 @@ UFO - Score: 500
 The asteroids, spaceships, bullets and UFO have been created on Probuilder by the author
 
 All the other assets have been imported(UI images, sound)
+
+Please check this link for the build on web
+For the WebGL: https://play.unity.com/mg/other/webgl-builds-369884
+

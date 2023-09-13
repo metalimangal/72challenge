@@ -3349,7 +3349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabToFire: {fileID: 103899687732578651, guid: 5bac3b4c6ad901d40b905ed8948ea281, type: 3}
   firePoint: {fileID: 8280802474934556970}
-  shootTime: 1
+  shootTime: 3
   spaceshipType: 1
 --- !u!65 &7483893143483911539
 BoxCollider:

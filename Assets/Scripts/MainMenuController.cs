@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenuController : MonoBehaviour
 {
     public GameObject optionsPanel;
+    public TMP_Text highScore;
     [SerializeField]
     private Button music;
     [SerializeField]
     private Sprite[] musicIcons;
     void Start()
     {
-        
+        highScore.text = ""+PlayerPrefs.GetInt("HighScore", 0);
     }
 
     void Update()
     {
         CheckMusic();
+        highScore.text = "" + PlayerPrefs.GetInt("HighScore", 0);
+
     }
 
     void CheckMusic()

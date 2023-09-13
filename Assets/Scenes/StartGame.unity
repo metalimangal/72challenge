@@ -1492,6 +1492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsPanel: {fileID: 6766343765233919642}
+  highScore: {fileID: 174613789}
   music: {fileID: 6678937881685411993}
   musicIcons:
   - {fileID: 21300006, guid: 444c52a0178f94b1ca82cebaa794f8cd, type: 3}

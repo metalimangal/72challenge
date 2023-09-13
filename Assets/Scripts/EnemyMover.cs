@@ -8,11 +8,15 @@ public class EnemyMover : MonoBehaviour
     private GameController gameController;
     public Vector3 translation;
 
+    private int numHits = 0;
+
     void Update()
     {
-        transform.Translate(translation * speed * Time.deltaTime);
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        float currentSpeed = speed + (gameController.GetScore()*speed / 10000);
 
-        // Destroy the asteroid when it goes out of bounds (you can adjust this threshold)
+        transform.Translate(translation * currentSpeed * Time.deltaTime);
+
         if(this.CompareTag("Enemy1") || this.CompareTag("Enemy2"))
         {
             if(transform.position.x < -10.0f || transform.position.x > 10.0f)
@@ -28,7 +32,7 @@ public class EnemyMover : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,20 +41,38 @@ public class EnemyMover : MonoBehaviour
         {
 
             int score = 100;
+            if (this.CompareTag("Asteroid"))
+            {
+                gameController.AddScore(score);
+                Destroy(gameObject);
+            }
             if (this.CompareTag("Enemy1"))
             {
                 score = 200;
+                gameController.AddScore(score);
+                Destroy(gameObject);
             }
             else if (this.CompareTag("Enemy2"))
             {
-                score = 300;
+                if (numHits >= 5)
+                {
+                    score = 300;
+                    gameController.AddScore(score);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    numHits++;
+                }
+
             }
             else if (this.CompareTag("UFO"))
             {
                 score = 1000;
+                gameController.AddScore(score);
+                Destroy(gameObject);
             }
-            gameController.AddScore(score);
-            Destroy(gameObject);
+
 
 
         }

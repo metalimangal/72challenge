@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3412814151504415464}
   - component: {fileID: 1104179203440189900}
   - component: {fileID: 2521367803466272624}
-  - component: {fileID: 1476787467146074081}
+  - component: {fileID: 903498790063690459}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Asteroid
@@ -37913,8 +37913,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3994098006370205112}
   m_Mesh: {fileID: 0}
---- !u!64 &1476787467146074081
-MeshCollider:
+--- !u!65 &903498790063690459
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -37931,7 +37931,6 @@ MeshCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 0.76926327, y: 1, z: 0.9367391}
+  m_Center: {x: 0.20319188, y: 0, z: -0.3254133}

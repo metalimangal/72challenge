@@ -15,8 +15,6 @@ public class Spaceship_CTRL : MonoBehaviour
 
         Vector3 localMovement = new Vector3(horizontalInput * speed, 0.0f, verticalInput*speed);
         transform.Translate(transform.TransformDirection(localMovement) * Time.deltaTime);
-
-        //Rigidbody rigidbody = this.transform.GetChild(0).GetComponent<Rigidbody>();
        
     }
 }

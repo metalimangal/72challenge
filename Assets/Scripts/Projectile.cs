@@ -19,10 +19,13 @@ public class Projectile : MonoBehaviour
 
     public SpaceshipType spaceshipType;
     float shootTimeNow;
+    GameObject playerObject;
     // Start is called before the first frame update
     void Start()
     {
-        shootTimeNow = shootTime;
+        shootTimeNow = 0;
+        playerObject = GameObject.FindWithTag("Player");
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
@@ -35,21 +38,39 @@ public class Projectile : MonoBehaviour
         }
         else if(spaceshipType != SpaceshipType.Player)
         {
-            if (shootTimeNow > 0)
+            if (playerObject != null)
             {
-                shootTimeNow -= Time.deltaTime; 
+                Vector3 playerPosition = playerObject.transform.position;
+                Vector3 enemyPosition = transform.position;
+
+                RaycastHit hit;
+
+                Debug.DrawRay(firePoint.transform.position, firePoint.transform.forward * 20, Color.red);
+
+                if (Physics.Raycast(firePoint.transform.position, transform.forward * 20, out hit))
+                {
+                    if (hit.collider.gameObject.CompareTag("Player") && (!hit.collider.gameObject.CompareTag("Asteroid") && !hit.collider.gameObject.CompareTag("Enemy1") && !hit.collider.gameObject.CompareTag("Enemy2")))
+                    {
+                        Debug.Log("Hitting Player");
+                        if (shootTimeNow >= shootTime)
+                        {
+                            Instantiate(prefabToFire, firePoint.transform.position, firePoint.transform.rotation);
+                            shootTimeNow = 0;
+                        }
+
+                    }
+                }
+
+                shootTimeNow += Time.deltaTime;
+
             }
-            else
-            {
-                Instantiate(prefabToFire, firePoint.transform.position, firePoint.transform.rotation);
-                shootTimeNow = shootTime;
-            }
+
         }
     }
 
     public void PlayerHit()
     {
-        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
 
         if(spaceshipType == SpaceshipType.Player)
         {

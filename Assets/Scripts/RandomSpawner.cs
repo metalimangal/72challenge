@@ -29,7 +29,6 @@ public class RandomSpawner : MonoBehaviour
 
     void Update()
     {
-        // Check if it's time to spawn a new asteroid
         if (Time.time >= nextSpawnTime)
         {
             SpawnAsteroid();

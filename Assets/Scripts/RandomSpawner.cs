@@ -12,6 +12,7 @@ public class RandomSpawner : MonoBehaviour
     public float spawnHeight = 5.0f;
     public float moverSpeed = 3.0f;
     public bool spawnInGroup;
+    public bool isUFO;
 
     private float currentSpawnRate;
     private float nextSpawnTime = 0.0f;
@@ -47,6 +48,7 @@ public class RandomSpawner : MonoBehaviour
             for (int i = -1; i <= 1; i += 1)
             {
                 Vector3 spawnPosition = new Vector3(spawnX + i, spawnHeight, transform.position.z + Mathf.Abs(i));
+
                 GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.Euler(new Vector3(0, 180, 0)));
                 EnemyMover mover = asteroid.AddComponent<EnemyMover>();
                 mover.translation = new Vector3(xDir*xRandom, yDir, zDir);
@@ -56,7 +58,19 @@ public class RandomSpawner : MonoBehaviour
         else
         {
             Vector3 spawnPosition = new Vector3(spawnX, spawnHeight, transform.position.z);
-            GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.Euler(new Vector3(0, 180, 0)));
+
+            GameObject asteroid;
+
+
+            if (isUFO)
+            {
+                spawnPosition = new Vector3(transform.position.x, spawnHeight, transform.position.z + spawnX);
+                asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.Euler(new Vector3(0, 0, 0)));
+            }
+            else
+            {
+                asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.Euler(new Vector3(0, 180, 0)));
+            }
             EnemyMover mover = asteroid.AddComponent<EnemyMover>();
             mover.translation = new Vector3(xDir, yDir, zDir);
             mover.speed = moverSpeed;

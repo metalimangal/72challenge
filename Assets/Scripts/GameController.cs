@@ -13,6 +13,9 @@ public class GameController : MonoBehaviour
     private GameObject pausePanel;
     private GameObject player;
     public Button pause;
+    public int health = 3;
+    public GameObject[] heartContainers;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -60,6 +63,15 @@ public class GameController : MonoBehaviour
     {
         pausePanel.gameObject.SetActive(true);
         PanelText.text = "Game Over!!!!";
+    }
+
+    public void ReduceHealth()
+    {
+        health--;
+        if (health >= 0)
+        {
+            heartContainers[health].transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
 
 }

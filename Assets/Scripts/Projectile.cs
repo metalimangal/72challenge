@@ -7,7 +7,9 @@ public class Projectile : MonoBehaviour
     public GameObject prefabToFire;
     public GameObject firePoint;
     public float shootTime = 5.0f;
-    
+    private GameController gameController;
+
+
     public enum SpaceshipType
     {
         Player,
@@ -41,6 +43,20 @@ public class Projectile : MonoBehaviour
             {
                 Instantiate(prefabToFire, firePoint.transform.position, firePoint.transform.rotation);
                 shootTimeNow = shootTime;
+            }
+        }
+    }
+
+    public void PlayerHit()
+    {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
+        if(spaceshipType == SpaceshipType.Player)
+        {
+            gameController.ReduceHealth();
+            if (gameController.health <= 0)
+            {
+                this.gameObject.SetActive(false);
             }
         }
     }

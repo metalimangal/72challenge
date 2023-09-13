@@ -10,6 +10,7 @@ public class ProtonShot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(this.transform.childCount>=0)
         rb = this.transform.GetChild(0).GetComponent<Rigidbody>();
 
         Destroy(this.gameObject, destroyAfter);
@@ -18,6 +19,7 @@ public class ProtonShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(rb!=null)
         rb.AddRelativeForce(new Vector3(0, 0, force));
     }
 }

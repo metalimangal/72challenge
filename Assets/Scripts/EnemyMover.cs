@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class EnemyMover : MonoBehaviour
 {
-    public float speed = 3.0f; // Speed at which the asteroid moves along the z-axis
+    public float speed = 3.0f;
     private GameController gameController;
     public Vector3 translation;
 
     void Update()
     {
-        // Move the asteroid along the z-axis
         transform.Translate(translation * speed * Time.deltaTime);
 
         // Destroy the asteroid when it goes out of bounds (you can adjust this threshold)
@@ -22,6 +21,10 @@ public class EnemyMover : MonoBehaviour
             }
         }
         if (transform.position.z < -2.0f)
+        {
+            Destroy(gameObject);
+        }
+        if (this.CompareTag("UFO") && transform.position.x >= 12)
         {
             Destroy(gameObject);
         }
